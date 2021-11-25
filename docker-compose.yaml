@@ -1,0 +1,7 @@
+version: '3.7'
+services:
+  restaurant_mapper:
+    build: .
+    restart: unless-stopped
+    ports:
+      - 3002:3002
