@@ -52,7 +52,11 @@ module.exports.getRestaurants = async (req, res, next) => {
  */
 module.exports.insertRestaurant = async (req, res, next) => {
   try {
-    const { name, location: loc, description } = req.body;
+    const { name, location: loc, description, apikey } = req.body;
+
+    if (!apikey || apikey !== process.env.API_KEY) {
+      throw new Error("Unauthorized");
+    }
 
     if (!name || !loc || !description) {
       throw new Error("Missing restaurant fields");
@@ -85,6 +89,9 @@ module.exports.insertRestaurant = async (req, res, next) => {
       console.error(err);
     }
   } catch (err) {
+    if (err.message === "Unauthorized") {
+      return res.status(401).json({ error: "Authorization error" });
+    }
     console.error(err);
     next(err);
   }

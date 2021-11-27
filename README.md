@@ -8,6 +8,8 @@ This is a project originally built for G2T4, [CS203 project](https://github.com/
 
 It is a microservice built using [express.js](https://expressjs.com/) and uses the [OneMap API](https://www.onemap.gov.sg/docs/).
 
+Here is a [demo](https://RestaurantMapper.wonyk99.repl.co).
+
 ## Installation
 
 ```bash
@@ -33,10 +35,10 @@ The following endpoints are available and exposed for users to retrieve the rest
 
 The prefix for all the API URI is `/api/v1`.
 
-| Method | Endpoint     | Body               | Description                                                    |
-| ------ | ------------ | ------------------ | -------------------------------------------------------------- |
-| GET    | /restaurants | NIL                | Retrieve all the restaurant data as a FeatureCollection object |
-| POST   | /restaurants | Restaurant in JSON | The Java backend will send a restaurant DTO in JSON            |
+| Method | Endpoint     | Body                           | Description                                                    |
+| ------ | ------------ | ------------------------------ | -------------------------------------------------------------- |
+| GET    | /restaurants | NIL                            | Retrieve all the restaurant data as a FeatureCollection object |
+| POST   | /restaurants | Restaurant in JSON with apikey | The Java backend will send a restaurant DTO in JSON            |
 
 ## Production
 
