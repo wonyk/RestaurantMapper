@@ -1,40 +1,16 @@
 //Initialize OneMap and select one style
-//The parameters are Div name,Map style(default,night grey,original),Zoom, Latitude, Longitude and Opacity
 const map = onemap.initializeMap("map", "default", 11, 1.3, 103.8, 0.8);
 
-// Add Layer at the back
-const backLayer = onemap.addBackLayer(
-  map,
-  L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    detectRetina: true,
-    attribution: "© OpenStreetMap contributors",
-    maxZoom: 18,
-    minZoom: 0,
-    opacity: 1,
-  })
-);
-
-// //Layer to be removed later
-const removeLayer = onemap.addFrontLayer(
-  map,
-  L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    detectRetina: true,
-    attribution: "© OpenStreetMap contributors",
-    maxZoom: 18,
-    minZoom: 0,
-    opacity: 1,
-  })
-);
-//Removed Layer from Map
-onemap.removeLayer(map, removeLayer);
+map.setMaxBounds([
+  [1.56073, 104.1147],
+  [1.16, 103.502],
+]);
 
 //Setup configuration for REST API Services (Your Access Token)
 //Our Documentation @  https://docs.onemap.sg
 
 axios
-  .get(
-    "https://swisshack-restaurantmapper.azurewebsites.net/api/v1/restaurants"
-  )
+  .get("http://localhost:3002/api/v1/restaurants")
   .then((res) => {
     addPinsToMap(res.data);
   })

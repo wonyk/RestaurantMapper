@@ -1,7 +1,7 @@
 "use strict";
 
 const express = require("express");
-const cors = require("cors");
+// const cors = require("cors");
 const morgan = require("morgan");
 const router = require("./routes");
 const app = express();
@@ -29,7 +29,7 @@ mongoose
 // Basic Configuration
 const port = process.env.PORT || 80;
 
-app.use(cors());
+// app.use(cors());
 
 //Routes with the default path added
 app.use("/public", express.static(process.cwd() + "/public"));
