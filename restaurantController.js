@@ -62,10 +62,10 @@ module.exports.insertRestaurant = async (req, res, next) => {
       throw new Error("Missing restaurant fields");
     }
 
-    try {
-      const { LATITUDE: lat, LONGITUDE: long } = await getLatLong(loc);
-      const region = mapper.getSubzoneAtPoint([long, lat]).properties.name;
+    const { LATITUDE: lat, LONGITUDE: long } = await getLatLong(loc);
+    const region = mapper.getSubzoneAtPoint([long, lat]).properties.name;
 
+    try {
       const _id = await Case.findOne({ region }, "_id").exec();
 
       if (!_id) {
@@ -91,6 +91,8 @@ module.exports.insertRestaurant = async (req, res, next) => {
   } catch (err) {
     if (err.message === "Unauthorized") {
       return res.status(401).json({ error: "Authorization error" });
+    } else if (err.message === "Error: Location not found") {
+      return res.status(404).json({ error: "Location not found" });
     }
     console.error(err);
     next(err);
