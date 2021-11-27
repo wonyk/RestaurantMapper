@@ -1,9 +1,9 @@
 "use strict";
 
 const express = require("express");
-// const cors = require("cors");
 const morgan = require("morgan");
 const router = require("./routes");
+const helmet = require("helmet");
 const app = express();
 
 const mongoose = require("mongoose");
@@ -29,7 +29,7 @@ mongoose
 // Basic Configuration
 const port = process.env.PORT || 80;
 
-// app.use(cors());
+app.use(helmet({ contentSecurityPolicy: false }));
 
 //Routes with the default path added
 app.use("/public", express.static(process.cwd() + "/public"));
