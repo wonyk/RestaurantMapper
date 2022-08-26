@@ -22,7 +22,7 @@
     "express": "^4.17.1",
     "geolib": "^3.3.3",
     "helmet": "^4.6.0",
-    "mongoose": "^6.0.12",
+    "mongoose": "^6.4.6",
     "morgan": "^1.10.0",
     "node-cron": "^3.0.0"
   },
